@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  the-gateway:
+    image: local/test-nginx:latest
+    network_mode: host
+    privileged: true
+    volumes:
+    - ./etc/nginx/conf.d:/etc/nginx/conf.d:ro
+    - ./etc/supervisor/conf.d:/etc/supervisor/conf.d:ro
+    - ./server:/server:ro
+    command: supervisord -n
